@@ -7,12 +7,12 @@
   blockinfile:
     path: /etc/hosts
     block: |
-    {{ item.ip }} {{ item.name }}
+      {{ item.ip }} {{ item.name }}
     marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
   with_items:
-  - { name: clustera, ip: 192.168.1.40 }
-  - { name: clusterb, ip: 192.168.1.38 }
-  - { name: clusterc, ip: 192.168.1.41 }
-  - { name: docker, ip: 192.168.1.51 }
-  - { name: ansible, ip: 192.168.1.52 }  
-  - { name: hplaptop, ip: 192.168.1.6 }
+    - { name: clustera, ip: 192.168.1.40 }
+    - { name: clusterb, ip: 192.168.1.38 }
+    - { name: clusterc, ip: 192.168.1.41 }
+    - { name: docker, ip: 192.168.1.51 }
+    - { name: ansible, ip: 192.168.1.52 }  
+    - { name: hplaptop, ip: 192.168.1.6 }
