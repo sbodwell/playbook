@@ -4,11 +4,11 @@
   hosts: all
   tasks:
 - name: Add mappings to /etc/hosts
-  blockinfile:
-  dest: /etc/hosts
-  block: |  
-  "{{ item.ip }}" "{{ item.name }}"
-  marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+blockinfile:
+    path: /etc/hosts
+    block: |
+      {{ item.ip }} {{ item.name }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
   with_items:
   - { name: clustera, ip: 192.168.1.40 }
   - { name: clusterb, ip: 192.168.1.38 }
