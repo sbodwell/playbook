@@ -1,5 +1,3 @@
----
-
 - name: Add mappings to /etc/hosts
   blockinfile:
     path: /etc/hosts
