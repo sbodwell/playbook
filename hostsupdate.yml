@@ -1,11 +1,8 @@
 ---
 
-- name: Network Getting Started First Playbook
-  connection: network_cli
+- name: host file
   hosts: all
   tasks:
-  
-  - name: Add mappings to /etc/hosts
     blockinfile:
       path: /etc/hosts
       block: |
