@@ -1,16 +1,24 @@
----
-
-- name: host
-  hosts: all
-  blockinfile:
-    path: /etc/hosts
-    block: |
-      {{ item.ip }} {{ item.name }}
-    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
-  with_items:
-    - { name: clustera, ip: 192.168.1.40 }
-    - { name: clusterb, ip: 192.168.1.38 }
-    - { name: clusterc, ip: 192.168.1.41 }
-    - { name: docker, ip: 192.168.1.51 }
-    - { name: ansible, ip: 192.168.1.52 }  
-    - { name: hplaptop, ip: 192.168.1.6 }
+--- #update hosts file
+- hosts: 192.168.1.6
+  remote_user: user
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts:  yes
+  tasks:
+    - name: Update Hosts File
+       blockinfile:
+         path: /etc/hosts
+         block: |
+           {{ item.ip }} {{ item.name }}
+         marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+         with_items:
+            - { name: clustera, ip: 192.168.1.40 }
+            - { name: clusterb, ip: 192.168.1.38 }
+            - { name: clusterc, ip: 192.168.1.41 }
+            - { name: docker, ip: 192.168.1.51 }
+            - { name: ansible, ip: 192.168.1.52 }  
+            - { name: hplaptop, ip: 192.168.1.6 }
+            - { name: haproxy, ip: 192.168.1.58 }
+            - { name: haweb1, ip: 192.168.1.59 }
+            - { name: haweb2, ip: 192.168.1.60 }
